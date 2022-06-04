@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TodoDeleteButton } from "../components/TodoDeleteButton";
+import { TodoCardTemplate } from "../components/TodoCardTemplate";
 import { TodoInputButton } from "../components/TodoInputButton";
 import { TodoInputForm } from "../components/TodoInputForm";
 import { TodoTitle } from "../components/TodoTitle";
@@ -33,20 +33,14 @@ export const Todo = () => {
           <TodoInputButton onClickSubmitInputText={() => submitInputText()} />
         </div>
         <div style={style.todoList}>
-          <hr></hr>
+          <hr style={style.hr}></hr>
           <div className="todos">
-            {taskList.map((todo, index) => {
+            {taskList.map((todo) => {
               return (
-                <div style={style.todo} key={todo}>
-                  <div style={style.todoTextWrapper}>
-                    <div style={style.todoText}>
-                      <span>{todo}</span>
-                    </div>
-                    <TodoDeleteButton
-                      onClickDeleteTask={() => deleteTask(index)}
-                    />
-                  </div>
-                </div>
+                <TodoCardTemplate
+                  keyTodo={todo}
+                  onClickDeleteTask={() => deleteTask()}
+                />
               );
             })}
           </div>
@@ -59,7 +53,6 @@ export const Todo = () => {
 const style = {
   body: {
     fontFamily: "Roboto Condensed",
-    fontFamily: "sans-serif",
     width: "100vw",
     maxWidth: "100%",
     backgroundColor: "black",
@@ -78,26 +71,7 @@ const style = {
     textAlign: "center",
     position: "relative",
   },
-  todo: {
-    margin: "0.4rem",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  todoList: {
-    marginTop: "10px",
-  },
-  todoTextWrapper: {
-    border: "1px solid gray",
-    display: "flex",
-    padding: "0.5rem 1rem",
-    borderRadius: "10px",
-    boxShadow: "0 3px 6px rgb(51 51 51 / 16%)",
-  },
-  todoText: {
-    minWidth: "15rem",
-    maxHeight: "1.8rem",
-    background: "white",
-    fontWeight: "bold",
+  hr: {
+    margin: "10px 0",
   },
 };
