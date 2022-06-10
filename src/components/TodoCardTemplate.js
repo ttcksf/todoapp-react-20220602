@@ -1,12 +1,12 @@
 import React from "react";
 import { TodoDeleteButton } from "../components/TodoDeleteButton";
 
-export const TodoCardTemplate = ({ onClickDeleteTask, keyTodo }) => {
+export const TodoCardTemplate = ({ onClickDeleteTask, todo }) => {
   return (
-    <div style={style.todo} key={keyTodo}>
+    <div style={style.todo}>
       <div style={style.todoTextWrapper}>
         <div style={style.todoText}>
-          <span>{keyTodo}</span>
+          <span>{todo}</span>
         </div>
         <TodoDeleteButton onClickDeleteTask={onClickDeleteTask} />
       </div>

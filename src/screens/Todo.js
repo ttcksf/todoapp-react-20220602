@@ -35,10 +35,11 @@ export const Todo = () => {
         <div style={style.todoList}>
           <hr style={style.hr}></hr>
           <div className="todos">
-            {taskList.map((todo) => {
+            {taskList.map((todo, index) => {
               return (
                 <TodoCardTemplate
-                  keyTodo={todo}
+                  key={index}
+                  todo={todo}
                   onClickDeleteTask={() => deleteTask()}
                 />
               );
