@@ -3,24 +3,33 @@ import { TodoCardTemplate } from "../components/TodoCardTemplate";
 import { TodoInputButton } from "../components/TodoInputButton";
 import { TodoInputForm } from "../components/TodoInputForm";
 import { TodoTitle } from "../components/TodoTitle";
+import { useSelector, useDispatch } from "react-redux";
+import { addTask, removeTask } from "../features/TodoReducer";
 
 export const Todo = () => {
+  const taskList = useSelector((state) => state.todo.taskList);
+  const dispatch = useDispatch();
   const [inputText, setInputText] = useState("");
-  const [taskList, setTaskList] = useState([]);
   const changeInputText = (e) => setInputText(e.target.value);
   const submitInputText = () => {
     ///空欄時には走らない
     if (taskList === "") return;
     ///taskListに入力フォームのものを追加する
-    const newTaskList = [...taskList, inputText];
-    setTaskList(newTaskList);
+    dispatch(
+      addTask({
+        taskList: inputText,
+      })
+    );
     setInputText("");
   };
+
   const deleteTask = (index) => {
-    const newTaskList = [...taskList];
-    newTaskList.splice(index, 1);
-    setTaskList(newTaskList);
+    dispatch(removeTask(index));
+    // const newTaskList = [...taskList];
+    // newTaskList.splice(index, 1);
+    // // setTaskList(newTaskList);
   };
+
   return (
     <div style={style.body}>
       <div style={style.container}>
@@ -39,8 +48,8 @@ export const Todo = () => {
               return (
                 <TodoCardTemplate
                   key={index}
-                  todo={todo}
-                  onClickDeleteTask={() => deleteTask()}
+                  todo={todo.taskList}
+                  onClickDeleteTask={() => deleteTask(index)}
                 />
               );
             })}

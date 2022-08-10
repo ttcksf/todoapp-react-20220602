@@ -7,14 +7,14 @@ export const TodoTitle = () => {
       <header style={style.header}>
         <h1>Todo</h1>
         <div>
-          <ul style={style.headerNavUl}>
+          <ul style={style.headerNavMenuList}>
             <li>
-              <Link style={style.headerNavA} to={`/`}>
+              <Link style={style.headerNavMenuItem} to={`/`}>
                 Home
               </Link>
             </li>
             <li>
-              <Link style={style.headerNavA} to={`/test/`}>
+              <Link style={style.headerNavMenuItem} to={`/test/`}>
                 Test
               </Link>
             </li>
@@ -28,13 +28,13 @@ export const TodoTitle = () => {
 const style = {
   header: {
     textAlign: "center",
-    margin: "2rem auto",
-    padding: "2rem",
+    margin: "32px auto",
+    padding: "32px",
   },
-  headerNavUl: {
+  headerNavMenuList: {
     listStyle: "none",
   },
-  headerNavA: {
+  headerNavMenuItem: {
     color: "#333",
     textDecoration: "none",
   },
